@@ -9,7 +9,7 @@ bool vis[N];
 void dfs(int s){
     for(int i=1;i<=n;i++){
         if(g[s][i]&&!vis[i]){
-            vis[i]=0;
+            vis[i]=1;
             dist+=g[s][i];
             dfs(i);
             dist-=g[s][i];
