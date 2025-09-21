@@ -1,0 +1,68 @@
+v1
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int mrr[25],aus;
+int n,k;
+int arr[25];
+inline bool isprime(int x) { 
+	if (x == 1) return false; 
+	for (int i = 2; i * i <= x; ++i)
+		if (x % i == 0)
+			return false;
+	return true;
+}
+void dfs(int a,int b,int c){
+	if(a==k){
+		if(isprime(b)){
+			aus++;
+			return;
+		}
+	}
+	for(int i=c;i<=n-k+a+1;i++){
+		dfs(a+1,b+arr[i],i+1);
+	}
+	return;
+}
+
+signed main(){
+	cin>>n>>k;
+	//for(auto&i:arr)cin>>i;
+	for (int i = 1; i <= n; ++i)
+		scanf("%lld", &arr[i]);
+	dfs(0,0,1);
+	cout<<aus<<endl;
+}
+v2
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int aus;
+int n,k;
+vector<int>arr(n);
+inline bool isprime(int x) { 
+	if (x == 1) return false; 
+	for (int i = 2; i * i <= x; ++i)
+		if (x % i == 0)
+			return false;
+	return true;
+}
+void dfs(int a,int b,int c){
+	if(a==k){
+		if(isprime(b)){
+			aus++;
+			return;
+		}
+	}
+	for(int i=c;i<=n-k+a+1;i++){
+		dfs(a+1,b+arr[i],i+1);
+	}
+	return;
+}
+
+signed main(){
+	cin>>n>>k;
+	for(auto&i:arr)cin>>i;
+	dfs(0,0,0);
+	cout<<aus<<endl;
+}
