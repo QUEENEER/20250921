@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N=21,M=51;
+int n,m;
+int g[N][N];
+int dist,maxo;
+bool vis[N];
+void dfs(int s){
+    for(int i=1;i<=n;i++){
+        if(g[s][i]&&!vis[i]){
+            vis[i]=0;
+            dist+=g[s][i];
+            dfs(i);
+            dist-=g[s][i];
+        }
+    }
+    maxo=max(maxo,dist);
+    vis[s]=0;
+    return;
+}
+signed main(){
+    cin>>n>>m;
+    for(int i=1;i<=m;i++){
+        int x,y,z;
+        cin>>x>>y>>z;
+        g[x][y]=z;
+        g[y][x]=z;
+    }
+    for(int i=1;i<=n;i++){
+        vis[i]=1;
+        dist=0;
+        dfs(i);
+        memset(vis,0,sizeof(vis));
+    }
+    cout<<maxo<<endl;
+}
